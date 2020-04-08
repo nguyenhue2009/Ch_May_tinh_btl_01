@@ -66,34 +66,39 @@ namespace Cua_hang_maytinh
             txtMa_NCC.Text = "";
             txtTong_tien_nhap.Text = "";
             txtMa_HDN.Enabled = true;
+            btnLuu.Enabled = true;
+            btnHuy.Enabled = true;
+            btnSua.Enabled = false;
+            btnThem.Enabled = false;
+            btnXoa.Enabled = false;
+            btnThoat.Enabled = false;
         }
+
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+ 
             if (txtMa_HDN.Text == "")
             {
-                MessageBox.Show("Ban can nhap ma Hoa don nhap hang");
+                MessageBox.Show("Ban can nhap ma Hoa don nhap hang", "Thong báo");
                 txtMa_HDN.Focus();
                 return;
             }
             if (dtpNgay_nhap.Text == "")
             {
-                MessageBox.Show("Ban can nhap ngay nhap hang");
+                MessageBox.Show("Ban can nhap ngay nhap hang"," Thông báo");
                 dtpNgay_nhap.Focus();
-            
-
             }
             if (txtMa_NV.Text == "")
             {
-                MessageBox.Show("Ban can nhap Ma NV nhap hang");
+                MessageBox.Show("Ban can nhap Ma NV nhap hang","Thông báo");
                 txtMa_NV.Focus();
-             
             }
             else
             {
-                string sql = "Insert into Hoa_don_nhap values ('" + txtMa_HDN.Text +"','"+ dtpNgay_nhap.Text + "','"+ txtMa_NV.Text + "'"; 
-                if (txtMa_NCC.Text != "")
-                    sql = sql + "," + txtMa_NCC.Text.Trim();
+                string sql = "Insert into Hoa_don_nhap values ('" + txtMa_HDN.Text + "','" + dtpNgay_nhap.Text + "','" + txtMa_NV.Text + "','"+txtMa_NCC.Text+"'";
+                //if (txtMa_NCC.Text != "")
+                //    sql = sql + "," + txtMa_NCC.Text.Trim();
                 if (txtTong_tien_nhap.Text != "")
                     sql = sql + "," + txtTong_tien_nhap.Text.Trim();
                 sql = sql + ")";
@@ -108,11 +113,24 @@ namespace Cua_hang_maytinh
                 {
                     MessageBox.Show(ex.ToString());
                 }
+                txtMa_HDN.Text = "";
+                dtpNgay_nhap.Text = "";
+                txtMa_NV.Text = "";
+                txtMa_NCC.Text = "";
+                txtTong_tien_nhap.Text = "";
+                //txtMa_HDN.Enabled = true;
+                btnLuu.Enabled = false;
+                btnHuy.Enabled = false;
+                btnSua.Enabled = true;
+                btnThem.Enabled = true;
+                btnXoa.Enabled = true;
+                btnThoat.Enabled = true;
                 return;
             }
+            
         }
-
-        private void txtTong_tien_nhap_KeyPress(object sender, KeyPressEventArgs e)
+  
+    private void txtTong_tien_nhap_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (((e.KeyChar >= '0') && (e.KeyChar <= '9')) ||
                 (Convert.ToInt32(e.KeyChar) == 8) ||
@@ -125,19 +143,15 @@ namespace Cua_hang_maytinh
                 e.Handled = true;
             }
         }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+    
 
         private void btnXoa_Click_1(object sender, EventArgs e)
         {
-            string sql;
+            
             if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo",
 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                sql = " Delete From Hoa_don_nhap Where Ma_HDN = '" + txtMa_HDN.Text + "'";
+                string sql = " Delete From Hoa_don_nhap Where Ma_HDN = '" + dataGridViewHDN.CurrentRow.Cells["Ma_HDN"].Value.ToString() + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
                 loaddatatoGridview();
@@ -146,7 +160,24 @@ MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            btnThem.Enabled = false;
+            txtMa_HDN.Text = "";
+            dtpNgay_nhap.Text = "";
+            txtMa_NV.Text = "";
+            txtMa_NCC.Text = "";
+            txtTong_tien_nhap.Text = "";
+            //txtMa_HDN.Enabled = true;
+            btnLuu.Enabled = false;
+            //btnHuy.Enabled = false;
+            btnSua.Enabled = false;
+            
+            btnXoa.Enabled = true;
+            btnThoat.Enabled = true;
+        }
 
+        private void btnThoat_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

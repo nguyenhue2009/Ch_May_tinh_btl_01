@@ -85,7 +85,7 @@
             this.txtMa_NCC.Location = new System.Drawing.Point(137, 125);
             this.txtMa_NCC.Name = "txtMa_NCC";
             this.txtMa_NCC.Size = new System.Drawing.Size(100, 20);
-            this.txtMa_NCC.TabIndex = 2;
+            this.txtMa_NCC.TabIndex = 8;
             // 
             // label3
             // 
@@ -144,6 +144,7 @@
             this.Tong_tien_nhap});
             this.dataGridViewHDN.Location = new System.Drawing.Point(12, 172);
             this.dataGridViewHDN.Name = "dataGridViewHDN";
+            this.dataGridViewHDN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewHDN.Size = new System.Drawing.Size(573, 184);
             this.dataGridViewHDN.TabIndex = 10;
             this.dataGridViewHDN.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHDN_CellContentClick);
@@ -170,9 +171,8 @@
             // Ma_NCC
             // 
             this.Ma_NCC.DataPropertyName = "Ma_NCC";
-            this.Ma_NCC.HeaderText = "Mã Nhà cung cấp";
+            this.Ma_NCC.HeaderText = "Mã NCC";
             this.Ma_NCC.Name = "Ma_NCC";
-            this.Ma_NCC.Width = 120;
             // 
             // Tong_tien_nhap
             // 
@@ -217,10 +217,12 @@
             this.btnThoat.TabIndex = 13;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click_1);
             // 
             // btnHuy
             // 
             this.btnHuy.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnHuy.Enabled = false;
             this.btnHuy.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnHuy.Location = new System.Drawing.Point(458, 374);
@@ -247,6 +249,7 @@
             // btnLuu
             // 
             this.btnLuu.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnLuu.Enabled = false;
             this.btnLuu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnLuu.Location = new System.Drawing.Point(239, 374);
