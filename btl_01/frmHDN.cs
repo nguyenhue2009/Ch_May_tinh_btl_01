@@ -196,12 +196,12 @@ namespace QlyCHVT
             ThucthiSQL.CapNhatDuLieu(sql);
 
             //Cập nhập đơn giá nhập mới vào bảng nguyên liệu theo công thức
-            //Đơn giá nhập mới= (slg trong bảng tblNguyenlieu * Đơn giá nhập trong tblNguyenlieu + slg đang nhập trên frmHoadonnhap * 
-            //Đơn giá nhập trên frmHoadonhap)/(Slg trong bảng nguyên liệu +slg đang nhập trên frmHoadonnhap)
+            //Đơn giá nhập mới= Đơn giá nhập * 1.1
+            
             double dgn = Convert.ToDouble(ThucthiSQL.DocBang("SELECT Dongia FROM tblNguyenlieu WHERE MaNL = N'" +
                 txtMa_mayVT.Text + "'").Rows[0][0].ToString());
-            double dgnmoi = Math.Round(((sl * dgn) + (Convert.ToDouble(txtSo_luong.Text) * Convert.ToDouble(txtDon_gia.Text))) / (sl + Convert.ToDouble(txtSo_luong.Text)), 2);
-            sql = "UPDATE dboMay_vi_tinh SET Gia_nhap =" + dgnmoi + "WHERE Ma_mayVT = N'" + txtMa_mayVT.Text + "'";
+            double giaban = Math.Round(((1.1 * dgn) + 1.1 * Convert.ToDouble(txtDon_gia.Text)));
+            sql = "UPDATE dboMay_vi_tinh SET Gia_ban =" + giaban + "WHERE Ma_mayVT = N'" + txtMa_mayVT.Text + "'";
             ThucthiSQL.CapNhatDuLieu(sql);
             ResetValues();
             btnHuy.Enabled = true;
